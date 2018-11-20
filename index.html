@@ -40,24 +40,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/web3.min.js"></script>
-    <script>
-      // Initialize Web3
-      if (typeof web3 !== 'undefined') {
-        web3 = new Web3(web3.currentProvider);
-      } else {
-        web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:7545'));
-      }
-
-      // Display weather 
-      contract.currentWeather(function(err, currentWeather) {
-        $('#currentWeather').html(currentWeather);
-      });
-
-      // Submit weather report
-      $('form').on('submit', function(event) {
-        event.preventDefault();
-        contract.setWeather($('input').val());
-      })
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>
