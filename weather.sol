@@ -5,27 +5,27 @@ contract Weather {
   /*
   The weather report
   */
-  bytes32 public current;
+  uint16 public current;
 
   /*
   This is the constructor which will be called once when you
   deploy the contract to the blockchain
   */
   constructor() public {
-    current = "Nobody knows";
+    current = 0;
   }
 
   /*
   Returns the current weather report
   */
-  function currentWeather() public returns (bytes32) {
+  function currentWeather() public returns (uint16) {
     return current;
   }
 
   /*
   Sets the current weather report
   */
-  function setWeather(bytes32 report) public {
+  function setWeather(uint16 report) public {
     current = report;
   }
 }
