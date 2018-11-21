@@ -12,24 +12,10 @@ web3.eth.defaultAccount = web3.eth.accounts[9];
 contractAbi = [
 	{
 		"constant": false,
-		"inputs": [],
-		"name": "currentWeather",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint16"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
 		"inputs": [
 			{
-				"name": "report",
-				"type": "uint16"
+				"name": "_report",
+				"type": "string"
 			}
 		],
 		"name": "setWeather",
@@ -51,7 +37,7 @@ contractAbi = [
 		"outputs": [
 			{
 				"name": "",
-				"type": "uint16"
+				"type": "string"
 			}
 		],
 		"payable": false,
@@ -59,14 +45,13 @@ contractAbi = [
 		"type": "function"
 	}
 ]
+contractAddress = '0x9b103d6562fa58c3660c0b14fc39f497286157fc';
 
-contractAddress = '0x10f9be4493498c43ad70be1be5c5103e90d12c07';
 contract = web3.eth.contract(contractAbi).at(contractAddress);
 
 // Display weather 
 function dispLiveWeather(){
-	res = contract.currentWeather.call();
-	current = res.c[0];
+	current = contract.current()
 	$('#currentWeather').html(current);
 }
 
@@ -74,7 +59,7 @@ dispLiveWeather();
 
 // Submit weather report
 $('form').on('submit', function(event) {
-	event.preventDefault();
-	contract.setWeather(Number($('input').val()));
+  event.preventDefault();
+	contract.setWeather($('input').val());
 	dispLiveWeather();
-})
+});
